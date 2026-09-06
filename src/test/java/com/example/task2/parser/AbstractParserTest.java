@@ -62,7 +62,7 @@ public class AbstractParserTest {
         assertEquals(expectedNext, parser.next);
     }
 
-    class AbstractParserStub extends AbstractParser {
+    static class AbstractParserStub extends AbstractParser {
         private final TextComponent root;
         private final List<String> tokens;
         private final Map<String, TextComponentStub> tokenToTextComponentMap;
@@ -96,7 +96,7 @@ public class AbstractParserTest {
         }
     }
 
-    class TextComponentStub implements TextComponent {
+    static class TextComponentStub implements TextComponent {
         private final TextComponent.Type type;
         private final List<TextComponent> children = new ArrayList<>();
 
@@ -117,6 +117,10 @@ public class AbstractParserTest {
         @Override
         public void addChild(TextComponent child) {
             this.children.add(child);
+        }
+
+        @Override
+        public void setChildren(List<TextComponent> children) {
         }
 
         @Override

@@ -28,5 +28,4 @@ public abstract class AbstractParser {
     protected abstract List<String> tokenize(String text);
 
     protected abstract TextComponent processToken(String token);
-
 }

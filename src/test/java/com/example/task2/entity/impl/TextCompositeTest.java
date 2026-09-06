@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TextCompositeTest {
-
     @Test
     void shouldRestoreEmptyComposite() {
         TextComposite composite = new TextComposite(TextComponent.Type.LEXEME);
@@ -59,6 +59,36 @@ class TextCompositeTest {
         TextComposite composite = new TextComposite(expectedType);
 
         assertEquals(expectedType, composite.getType());
+    }
+
+    @Test
+    void shouldSuccessfullyAddChildAndGetChildren() {
+        TextComposite textComposite = new TextComposite(TextComponent.Type.TEXT);
+        TextComposite paragraphComposite = new TextComposite(TextComponent.Type.PARAGRAPH);
+
+        textComposite.addChild(paragraphComposite);
+
+        List<TextComponent> children = textComposite.getChildren();
+
+        assertAll(
+            () -> assertEquals(1, children.size()),
+            () -> assertEquals(paragraphComposite, children.getFirst())
+        );
+    }
+
+    @Test
+    void shouldSuccessfullySetChildren() {
+        TextComposite textComposite = new TextComposite(TextComponent.Type.TEXT);
+        TextComposite paragraphComposite = new TextComposite(TextComponent.Type.PARAGRAPH);
+
+        textComposite.addChild(paragraphComposite);
+
+        List<TextComponent> children = textComposite.getChildren();
+
+        assertAll(
+            () -> assertEquals(1, children.size()),
+            () -> assertEquals(paragraphComposite, children.getFirst())
+        );
     }
 
     @Test

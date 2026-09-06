@@ -20,6 +20,12 @@ public class TextComposite implements TextComponent {
     }
 
     @Override
+    public void setChildren(List<TextComponent> children) {
+        this.children.clear();
+        this.children.addAll(children);
+    }
+
+    @Override
     public List<TextComponent> getChildren() {
         return List.copyOf(children);
     }

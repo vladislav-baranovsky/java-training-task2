@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TextLeafTest {
@@ -29,6 +31,17 @@ class TextLeafTest {
     @Test
     void shouldThrowExceptionWhenTypeIsNull() {
         assertThrows(NullPointerException.class, () -> new TextLeaf(null, ' '));
+    }
+
+    @Test
+    void shouldThrowExceptionOnChildrenMethodCalls() {
+        TextLeaf leaf = new TextLeaf(TextComponent.Type.CHARACTER, 'a');
+
+        assertAll(
+            () -> assertThrows(UnsupportedOperationException.class, () -> leaf.addChild(new TextLeaf(TextComponent.Type.CHARACTER, 'b'))),
+            () -> assertThrows(UnsupportedOperationException.class, () -> leaf.setChildren(List.of())),
+            () -> assertThrows(UnsupportedOperationException.class, leaf::getChildren)
+        );
     }
 
     @Test

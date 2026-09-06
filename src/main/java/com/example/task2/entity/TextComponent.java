@@ -14,7 +14,20 @@ public interface TextComponent {
     }
 
     String restore();
+
     Type getType();
+
     void addChild(TextComponent child);
+
+    void setChildren(List<TextComponent> children);
+
     List<TextComponent> getChildren();
+
+    default boolean isText() {
+        return getType() == Type.TEXT;
+    }
+
+    default boolean isLexeme() {
+        return getType() == Type.LEXEME;
+    }
 }

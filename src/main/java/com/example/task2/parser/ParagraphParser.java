@@ -18,7 +18,6 @@ public class ParagraphParser extends AbstractParser {
         return new TextComposite(TextComponent.Type.PARAGRAPH);
     }
 
-
     @Override
     protected List<String> tokenize(String text) {
         return Arrays.asList(text.split(SENTENCE_REGEX));

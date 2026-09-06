@@ -30,6 +30,11 @@ public class TextLeaf implements TextComponent {
     }
 
     @Override
+    public void setChildren(List<TextComponent> children) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public List<TextComponent> getChildren() {
         throw new UnsupportedOperationException();
     }
